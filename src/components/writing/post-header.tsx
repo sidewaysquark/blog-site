@@ -7,7 +7,7 @@ interface PostHeaderProps {
   category: string;
   readingTime?: number;
   series?: string;
-  project?: string;
+  project?: string | null;
 }
 
 export function PostHeader({
