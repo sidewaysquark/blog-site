@@ -1,8 +1,15 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+@theme {
+  --color-bg: #0f172a;
+  --color-text: #e2e8f0;
+  --color-accent: #3b82f6;
 }
 
 @theme inline {
@@ -16,6 +23,17 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+  }
+}
+
+@layer components {
+  .prose {
+    --tw-prose-body: #cbd5e1;
+    --tw-prose-headings: #f1f5f9;
+    --tw-prose-links: #3b82f6;
+    --tw-prose-bold: #f8fafc;
+    --tw-prose-code: #93c5fd;
+    --tw-prose-pre-bg: #0f172a;
   }
 }
 

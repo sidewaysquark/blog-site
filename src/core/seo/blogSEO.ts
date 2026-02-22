@@ -4,9 +4,9 @@ import { SEOProps } from "./metadata"
 export function buildBlogSEO(post: BlogPost): SEOProps {
   return {
     title: post.title,
-    description: post.summary,
+    description: post.description,
     canonical: post.canonicalUrl,
-    publishedTime: post.publishedAt.toISOString(),
+    publishedTime: post.date.toISOString(),
     modifiedTime: post.updatedAt?.toISOString(),
     tags: post.tags
   }

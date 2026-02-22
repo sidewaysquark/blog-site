@@ -2,31 +2,36 @@ import z from "zod"
 import { blogFrontmatterSchema } from "../schemas/blogSchema"
 
 export const BLOG_CATEGORIES = [
+  "engineering",
   "architecture",
-  "realtime-systems",
-  "distributed-systems",
+  "project-breakdown",
+  "systems-thinking",
   "state-management",
   "performance",
-  "postmortem",
-  "engineering-principles"
+  "science",
+] as const
+
+export const POST_TYPES = [
+  "research",
+  "note"
 ] as const
 
 export type BlogCategory = typeof BLOG_CATEGORIES[number]
+export type PostType = typeof POST_TYPES[number]
 
 export type BlogPost = {
   slug: string
   title: string
-  summary: string
-  publishedAt: Date
+  description: string
+  date: Date
   updatedAt?: Date
+  type: PostType
   tags: string[]
   category: BlogCategory
-  series?: {
-    name: string
-    order: number
-  }
   readingTime: number
-  draft: boolean
+  series?: string
+  project?: string | null
+  published: boolean
   heroImage?: string
   canonicalUrl?: string
 }
@@ -39,15 +44,17 @@ export function mapToBlogPost(
   return {
     slug,
     title: frontmatter.title,
-    summary: frontmatter.summary,
-    publishedAt: new Date(frontmatter.publishedAt),
+    description: frontmatter.description,
+    date: new Date(frontmatter.date),
     updatedAt: frontmatter.updatedAt
       ? new Date(frontmatter.updatedAt)
       : undefined,
+    type: frontmatter.type,
     tags: frontmatter.tags,
     category: frontmatter.category,
     series: frontmatter.series,
-    draft: frontmatter.draft,
+    project: frontmatter.project ?? null,
+    published: frontmatter.published,
     heroImage: frontmatter.heroImage,
     canonicalUrl: frontmatter.canonicalUrl,
     readingTime
